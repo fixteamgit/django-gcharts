@@ -31,6 +31,7 @@ import csv
 import json
 import types
 import datetime
+import numbers
 
 
 __author__ = "Amit Weinstein, Misha Seltzer, Jacob Baskin"
@@ -229,7 +230,7 @@ class DataTable(object):
       return bool(value)
 
     elif value_type == "number":
-      if isinstance(value, (six.integer_types, float)):
+      if isinstance(value, numbers.Number):
         return value
       raise DataTableException("Wrong type %s when expected number" % t_value)
 
