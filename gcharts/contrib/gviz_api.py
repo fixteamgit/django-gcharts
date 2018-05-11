@@ -32,7 +32,8 @@ import json
 import types
 import datetime
 import numbers
-
+import decimal
+import uuid
 
 __author__ = "Amit Weinstein, Misha Seltzer, Jacob Baskin"
 
@@ -65,6 +66,8 @@ class DataTableJSONEncoder(json.JSONEncoder):
       return "Date(%d,%d,%d)" % (o.year, o.month - 1, o.day)
     elif isinstance(o, datetime.time):
       return [o.hour, o.minute, o.second]
+    elif isinstance(o, (decimal.Decimal, uuid.UUID)):
+        return str(o)
     else:
       return super(DataTableJSONEncoder, self).default(o)
 
